@@ -1,0 +1,15 @@
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Excel.dll
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Excel.pdb
+E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Steamworks.NET.dll
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Newtonsoft.Json.dll
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Newtonsoft.Json.xml
+E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
