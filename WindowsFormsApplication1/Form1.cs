@@ -15,37 +15,75 @@ using System.Windows.Forms;
 namespace WindowsFormsApplication1
 {
     
-    public partial class Form1 : Form
+    public partial class ModTool : Form
     {
         WorkshopModPack _pack;
         private UGCUpdateHandle_t currentHandle = UGCUpdateHandle_t.Invalid;
         private const int APP_ID = 550840;
         protected CallResult<CreateItemResult_t> _itemCreated;
         protected CallResult<SubmitItemUpdateResult_t> _itemSubmitted;
-        public Form1()
+        private string basepath = "Mod/";
+        public ModTool()
         {
-            SteamAPI.Init();
+           
+
             InitializeComponent();
+
+            if (!SteamAPI.Init())
+            {
+                _status.Text = "Steam Init Error, Please Open Steam First.";
+            }
+
+            basepath = System.Windows.Forms.Application.StartupPath + "/Mod/";
+
             InitFolders();
             
             _itemCreated = CallResult<CreateItemResult_t>.Create(OnItemCreated);
             _itemSubmitted = CallResult<SubmitItemUpdateResult_t>.Create(OnItemSubmitted);
 
-            string filename = "Mod/language.workshop.json";
+            StartUpdate();
+
+            string filename = basepath+"language.workshop.json";
 
             if (File.Exists(filename))
             {//读取
                 _pack = WorkshopModPack.Load(filename);
+                
             }
             else
             {//创建
-                _pack = new WorkshopModPack();
-                _pack.filename = filename;
-                SteamAPICall_t call = SteamUGC.CreateItem(new AppId_t(APP_ID), Steamworks.EWorkshopFileType.k_EWorkshopFileTypeCommunity);
-                _itemCreated.Set(call);
-                
+
+                CreateMod(filename);
             }
-            
+            _title.Text = _pack.title;
+            _description.Text = _pack.description;
+            _preview.Image =  Image.FromFile(basepath + _pack.previewfile);// basepath + _pack.previewfile;
+
+
+        }
+
+        private void StartUpdate()
+        {
+            Timer timer = new Timer();
+            timer.Tick += Update;
+            timer.Interval = 100;
+            timer.Enabled = true;
+            timer.Start();
+        }
+
+        private void Update(object sender, EventArgs e)
+        {
+            SteamAPI.RunCallbacks();
+        }
+
+       
+
+            private void CreateMod(string filename)
+        {
+            _pack = new WorkshopModPack();
+            _pack.filename = filename;
+            SteamAPICall_t call = SteamUGC.CreateItem(new AppId_t(APP_ID), Steamworks.EWorkshopFileType.k_EWorkshopFileTypeCommunity);
+            _itemCreated.Set(call);
         }
 
         private void OnItemCreated(CreateItemResult_t callback, bool ioFailure)
@@ -53,7 +91,7 @@ namespace WindowsFormsApplication1
             
             if (ioFailure)
             {
-                _status.Text = "Error: I/O Failure! :(";
+                _status.Text = "Error: I/O Failure!";
                 return;
             }
 
@@ -61,7 +99,7 @@ namespace WindowsFormsApplication1
             {
                 case EResult.k_EResultInsufficientPrivilege:
                     // you're banned!
-                    _status.Text = "Error: Unfortunately, you're banned by the community from uploading to the workshop! Bummer. :(";
+                    _status.Text = "Error: Unfortunately, you're banned by the community from uploading to the workshop! Bummer.";
                     break;
                 case EResult.k_EResultTimeout:
                     _status.Text = "Error: Timeout :S";
@@ -110,6 +148,9 @@ namespace WindowsFormsApplication1
                     _status.Text = "SUCCESS! Item submitted! ";
                     currentHandle = UGCUpdateHandle_t.Invalid;
                     break;
+                default:
+                    _status.Text = "Upload Fail!" + callback.m_eResult.ToString();
+                    break;
             }
             
         }
@@ -119,11 +160,17 @@ namespace WindowsFormsApplication1
             if (!Directory.Exists("Mod"))
             {
                 Directory.CreateDirectory("Mod");
+                
             }
 
-            if (!Directory.Exists("Mod/Content"))
+            if (!File.Exists(basepath + "preview.png"))
             {
-                Directory.CreateDirectory("Mod/Content");
+                File.Copy("template/template.png", basepath + "preview.png", true);
+            }
+
+            if (!Directory.Exists(basepath+"Content"))
+            {
+                Directory.CreateDirectory(basepath+"Content");
             }
         }
 
@@ -132,8 +179,13 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void ProcessLanguage(string filename)
+        private bool ProcessLanguage(string filename)
         {
+            if (!File.Exists(filename))
+            {
+                _status.Text = "file not found:"+filename;
+                return false;
+            }
             FileStream stream = File.Open(filename, FileMode.Open, FileAccess.Read);
 
             // Choose one of either 1 or 2
@@ -149,14 +201,21 @@ namespace WindowsFormsApplication1
 
             //判断Excel文件中是否存在数据表
             if (result.Tables.Count < 1)
-                return;
+            {
+                _status.Text = "table num < 1";
+                return false;
+            }
+                
 
             //默认读取第一个数据表
             DataTable sheet = result.Tables[0];
 
             //判断数据表内是否存在数据
             if (sheet.Rows.Count < 1)
-                return;
+            {
+                _status.Text = "row num < 1";
+                return false;
+            }
 
             //读取数据表行数和列数
             int rowCount = sheet.Rows.Count;
@@ -191,11 +250,82 @@ namespace WindowsFormsApplication1
 
             // 6. Free resources (IExcelDataReader is IDisposable)
             excelReader.Close();
+            return true;
         }
 
         private void Submit(object sender, EventArgs e)
         {
-            ProcessLanguage("E:/projects/SteamWorkshopUploader/WorkshopContent/testMod/lang/language.xlsx");
+            SaveCurrentModPack();
+            if (!ValidateModPack(_pack))
+            {
+                return;
+
+            }
+            UploadModPack(_pack);
+        }
+
+        private void SaveCurrentModPack()
+        {
+            _pack.title = _title.Text;
+            _pack.description = _description.Text;
+            _pack.Save();
+        }
+
+        public bool ValidateModPack(WorkshopModPack pack)
+        {
+            _status.Text = "Validating mod pack...";
+
+            if (pack.HasTag("Language"))
+            {
+                string langfile = basepath + _pack.contentfolder + "/lang/language.xlsx";
+                if (!ProcessLanguage(langfile))
+                {
+                    return false;
+                }
+            }
+
+            string path = basepath + pack.previewfile;
+
+            var info = new FileInfo(path);
+            if (info.Length >= 1024 * 1024)
+            {
+                _status.Text = "ERROR: Preview file must be <1MB!";
+                return false;
+            }
+
+            return true;
+        }
+
+        public void UploadModPack(WorkshopModPack pack)
+        {
+            _status.Text = "Uploading mod pack...";
+
+            ulong ulongId = ulong.Parse(pack.publishedfileid);
+            var id = new PublishedFileId_t(ulongId);
+
+            UGCUpdateHandle_t handle = SteamUGC.StartItemUpdate(new AppId_t(APP_ID), id);
+
+            currentHandle = handle;
+            SetupModPack(handle, pack);
+            SubmitModPack(handle, pack);
+        }
+
+        private void SetupModPack(UGCUpdateHandle_t handle, WorkshopModPack pack)
+        {
+            SteamUGC.SetItemTitle(handle, pack.title);
+            SteamUGC.SetItemDescription(handle, pack.description);
+            SteamUGC.SetItemVisibility(handle, (ERemoteStoragePublishedFileVisibility)pack.visibility);
+            SteamUGC.SetItemContent(handle, basepath + pack.contentfolder);
+            SteamUGC.SetItemPreview(handle, basepath + pack.previewfile);
+            SteamUGC.SetItemMetadata(handle, pack.metadata);
+            SteamUGC.SetItemTags(handle, pack.tags);
+        }
+
+        private void SubmitModPack(UGCUpdateHandle_t handle, WorkshopModPack pack)
+        {
+            SteamAPICall_t call = SteamUGC.SubmitItemUpdate(handle, _changeNote.Text);
+            _itemSubmitted.Set(call);
+            //In the same way as Creating a Workshop Item, confirm the user has accepted the legal agreement. This is necessary in case where the user didn't initially create the item but is editing an existing item.
         }
     }
 }

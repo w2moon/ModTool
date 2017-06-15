@@ -36,7 +36,16 @@ namespace WindowsFormsApplication1
 
             WorkshopModPack pack = JsonConvert.DeserializeObject<WorkshopModPack>(json);
             pack.filename = filename;
+            if (!pack.tags.Contains("Language"))
+            {
+                pack.tags.Add("Language");
+            }
             return pack;
+        }
+
+        public bool HasTag(string tag)
+        {
+            return tags.Contains(tag);
         }
 
         public void Save()
