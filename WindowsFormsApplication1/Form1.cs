@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1
 
             if (!SteamAPI.Init())
             {
-                _status.Text = "Steam Init Error, Please Open Steam First.";
+               _status.Text  = "Steam Init Error, Please Open Steam First.";
             }
 
             basepath = System.Windows.Forms.Application.StartupPath + "/Mod/";

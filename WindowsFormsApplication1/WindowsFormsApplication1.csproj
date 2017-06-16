@@ -97,6 +97,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -124,7 +125,16 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\template.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy /Y  /E "$(SolutionDir)template\*.*" "$(TargetDir)template\"
+xcopy /Y /E "$(SolutionDir)packages\Steamworks.Net\Windows-x86\CSteamworks.dll" "$(TargetDir)"
+xcopy /Y /E "$(SolutionDir)packages\Steamworks.Net\Windows-x86\steam_api.dll" "$(TargetDir)"
+xcopy /Y /E "$(SolutionDir)packages\Steamworks.Net\Windows-x86\steam_appid.txt" "$(TargetDir)"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
