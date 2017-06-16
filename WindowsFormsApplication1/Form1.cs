@@ -6,9 +6,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,7 +22,7 @@ namespace WindowsFormsApplication1
     {
         WorkshopModPack _pack;
         private UGCUpdateHandle_t currentHandle = UGCUpdateHandle_t.Invalid;
-        private const int APP_ID = 550840;
+        private  uint APP_ID = 550840;
         protected CallResult<CreateItemResult_t> _itemCreated;
         protected CallResult<SubmitItemUpdateResult_t> _itemSubmitted;
         private string basepath = "Mod/";
@@ -29,6 +32,23 @@ namespace WindowsFormsApplication1
 
             InitializeComponent();
 
+            string langName = System.Globalization.CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
+
+            if(langName == "zh")
+            {
+
+            }
+            else
+            {
+                langName = "en";
+            }
+
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(langName);
+            UpdateUILanguage();
+
+            StreamReader objReader = new StreamReader("steam_appid.txt");
+            APP_ID = uint.Parse(objReader.ReadLine());
+            
             if (!SteamAPI.Init())
             {
                _status.Text  = "Steam Init Error, Please Open Steam First.";
@@ -64,7 +84,7 @@ namespace WindowsFormsApplication1
 
         private void StartUpdate()
         {
-            Timer timer = new Timer();
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Tick += Update;
             timer.Interval = 100;
             timer.Enabled = true;
@@ -379,5 +399,29 @@ namespace WindowsFormsApplication1
             _status.Text = txt;
 
         }
+
+        private void enToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+            UpdateUILanguage();
+        }
+
+        private void zhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh");
+            UpdateUILanguage();
+        }
+
+        private void UpdateUILanguage()
+        {
+            ResourceManager rm = new ResourceManager(typeof(ModTool));
+
+            _lblTitle.Text = rm.GetString("title");
+            _lblDescription.Text = rm.GetString("description");
+            _lblChangeNote.Text = rm.GetString("changenote");
+            _commit.Text = rm.GetString("submit");
+        }
+
+       
     }
 }

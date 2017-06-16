@@ -28,114 +28,119 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModTool));
             this._commit = new System.Windows.Forms.Button();
             this._status = new System.Windows.Forms.Label();
             this._changeNote = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this._lblChangeNote = new System.Windows.Forms.Label();
             this._title = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this._lblTitle = new System.Windows.Forms.Label();
             this._description = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this._lblDescription = new System.Windows.Forms.Label();
             this._preview = new System.Windows.Forms.PictureBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this._preview)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _commit
             // 
-            this._commit.Location = new System.Drawing.Point(697, 526);
+            resources.ApplyResources(this._commit, "_commit");
             this._commit.Name = "_commit";
-            this._commit.Size = new System.Drawing.Size(75, 23);
-            this._commit.TabIndex = 0;
-            this._commit.Text = "submit";
             this._commit.UseVisualStyleBackColor = true;
             this._commit.Click += new System.EventHandler(this.Submit);
             // 
             // _status
             // 
-            this._status.AutoSize = true;
-            this._status.Location = new System.Drawing.Point(12, 540);
+            resources.ApplyResources(this._status, "_status");
             this._status.Name = "_status";
-            this._status.Size = new System.Drawing.Size(41, 12);
-            this._status.TabIndex = 1;
-            this._status.Text = "status";
             // 
             // _changeNote
             // 
-            this._changeNote.Location = new System.Drawing.Point(515, 253);
-            this._changeNote.Multiline = true;
+            resources.ApplyResources(this._changeNote, "_changeNote");
             this._changeNote.Name = "_changeNote";
-            this._changeNote.Size = new System.Drawing.Size(257, 267);
-            this._changeNote.TabIndex = 2;
             // 
-            // label1
+            // _lblChangeNote
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(513, 238);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 12);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Change Note";
+            resources.ApplyResources(this._lblChangeNote, "_lblChangeNote");
+            this._lblChangeNote.Name = "_lblChangeNote";
             // 
             // _title
             // 
-            this._title.Location = new System.Drawing.Point(14, 35);
+            resources.ApplyResources(this._title, "_title");
             this._title.Name = "_title";
-            this._title.Size = new System.Drawing.Size(255, 21);
-            this._title.TabIndex = 4;
             // 
-            // label2
+            // _lblTitle
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 12);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Title";
+            resources.ApplyResources(this._lblTitle, "_lblTitle");
+            this._lblTitle.Name = "_lblTitle";
             // 
             // _description
             // 
-            this._description.Location = new System.Drawing.Point(14, 87);
-            this._description.Multiline = true;
+            resources.ApplyResources(this._description, "_description");
             this._description.Name = "_description";
-            this._description.Size = new System.Drawing.Size(467, 433);
-            this._description.TabIndex = 6;
             // 
-            // label3
+            // _lblDescription
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 12);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Description";
+            resources.ApplyResources(this._lblDescription, "_lblDescription");
+            this._lblDescription.Name = "_lblDescription";
             // 
             // _preview
             // 
-            this._preview.Location = new System.Drawing.Point(515, 12);
+            resources.ApplyResources(this._preview, "_preview");
             this._preview.Name = "_preview";
-            this._preview.Size = new System.Drawing.Size(257, 212);
-            this._preview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this._preview.TabIndex = 8;
             this._preview.TabStop = false;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
+            this.menuStrip1.Name = "menuStrip1";
+            // 
+            // ToolStripMenuItem
+            // 
+            this.ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.zhToolStripMenuItem,
+            this.enToolStripMenuItem});
+            this.ToolStripMenuItem.Name = "ToolStripMenuItem";
+            resources.ApplyResources(this.ToolStripMenuItem, "ToolStripMenuItem");
+            // 
+            // zhToolStripMenuItem
+            // 
+            this.zhToolStripMenuItem.Name = "zhToolStripMenuItem";
+            resources.ApplyResources(this.zhToolStripMenuItem, "zhToolStripMenuItem");
+            this.zhToolStripMenuItem.Click += new System.EventHandler(this.zhToolStripMenuItem_Click);
+            // 
+            // enToolStripMenuItem
+            // 
+            this.enToolStripMenuItem.Name = "enToolStripMenuItem";
+            resources.ApplyResources(this.enToolStripMenuItem, "enToolStripMenuItem");
+            this.enToolStripMenuItem.Click += new System.EventHandler(this.enToolStripMenuItem_Click);
             // 
             // ModTool
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this._preview);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this._lblDescription);
             this.Controls.Add(this._description);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this._lblTitle);
             this.Controls.Add(this._title);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this._lblChangeNote);
             this.Controls.Add(this._changeNote);
             this.Controls.Add(this._status);
             this.Controls.Add(this._commit);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "ModTool";
-            this.Text = "ModTool";
             ((System.ComponentModel.ISupportInitialize)(this._preview)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,12 +151,16 @@
         private System.Windows.Forms.Button _commit;
         private System.Windows.Forms.Label _status;
         private System.Windows.Forms.TextBox _changeNote;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label _lblChangeNote;
         private System.Windows.Forms.TextBox _title;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label _lblTitle;
         private System.Windows.Forms.TextBox _description;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label _lblDescription;
         private System.Windows.Forms.PictureBox _preview;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zhToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enToolStripMenuItem;
     }
 }
 
