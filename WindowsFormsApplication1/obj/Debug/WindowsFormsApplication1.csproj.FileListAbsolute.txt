@@ -12,7 +12,6 @@ E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.
 E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Steamworks.NET.dll
 E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Newtonsoft.Json.dll
 E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Newtonsoft.Json.xml
-E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 E:\projects\work\ModTool\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
 E:\projects\work\ModTool\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
 E:\projects\work\ModTool\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
@@ -28,3 +27,4 @@ E:\projects\work\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplicat
 E:\projects\work\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 E:\projects\work\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
 E:\projects\work\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ModTool.resources
+E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ModTool.resources

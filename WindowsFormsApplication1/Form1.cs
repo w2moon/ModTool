@@ -74,6 +74,12 @@ namespace WindowsFormsApplication1
         private void Update(object sender, EventArgs e)
         {
             SteamAPI.RunCallbacks();
+
+            if (currentHandle != UGCUpdateHandle_t.Invalid)
+            {
+                UpdateProgressBar(currentHandle);
+            }
+            
         }
 
        
@@ -135,7 +141,8 @@ namespace WindowsFormsApplication1
 
         private void OnItemSubmitted(SubmitItemUpdateResult_t callback, bool ioFailure)
         {
-            
+            currentHandle = UGCUpdateHandle_t.Invalid;
+            _commit.Enabled = true;
             if (ioFailure)
             {
                 _status.Text = "Error: I/O Failure!";
@@ -240,7 +247,7 @@ namespace WindowsFormsApplication1
             //写入文件
             using (FileStream fileStream = new FileStream(filename.Replace(".xlsx",".json"), FileMode.Create, FileAccess.Write))
             {
-                using (TextWriter textWriter = new StreamWriter(fileStream, Encoding.GetEncoding("utf-8")))
+                using (TextWriter textWriter = new StreamWriter(fileStream, new System.Text.UTF8Encoding(false)))
                 {
                     textWriter.Write(json);
                 }
@@ -261,6 +268,7 @@ namespace WindowsFormsApplication1
                 return;
 
             }
+            _commit.Enabled = false;
             UploadModPack(_pack);
         }
 
@@ -326,6 +334,50 @@ namespace WindowsFormsApplication1
             SteamAPICall_t call = SteamUGC.SubmitItemUpdate(handle, _changeNote.Text);
             _itemSubmitted.Set(call);
             //In the same way as Creating a Workshop Item, confirm the user has accepted the legal agreement. This is necessary in case where the user didn't initially create the item but is editing an existing item.
+        }
+
+        private void UpdateProgressBar(UGCUpdateHandle_t handle)
+        {
+            ulong bytesDone;
+            ulong bytesTotal;
+            EItemUpdateStatus status = SteamUGC.GetItemUpdateProgress(handle, out bytesDone, out bytesTotal);
+
+            
+            int v = 100;
+            if(bytesTotal > 0)
+            {
+                float progress = (float)bytesDone / (float)bytesTotal;
+                v = (int)(progress * 100);
+            }
+            
+            string txt = "";
+            switch (status)
+            {
+                case EItemUpdateStatus.k_EItemUpdateStatusCommittingChanges:
+                    txt = "Committing changes...";
+                    break;
+                case EItemUpdateStatus.k_EItemUpdateStatusInvalid:
+                    txt = "Item invalid ... ";
+                    break;
+                case EItemUpdateStatus.k_EItemUpdateStatusUploadingPreviewFile:
+                    txt = "Uploading preview image...";
+                    break;
+                case EItemUpdateStatus.k_EItemUpdateStatusUploadingContent:
+                    txt = "Uploading content...";
+                    break;
+                case EItemUpdateStatus.k_EItemUpdateStatusPreparingConfig:
+                    txt = "Preparing configuration...";
+                    break;
+                case EItemUpdateStatus.k_EItemUpdateStatusPreparingContent:
+                    txt = "Preparing content...";
+                    break;
+            }
+            if(bytesTotal != 0)
+            {
+                txt += v.ToString() + "%";
+            }
+            _status.Text = txt;
+
         }
     }
 }
