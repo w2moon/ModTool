@@ -1,5 +1,7 @@
 ﻿using Excel;
+using ModTool;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Steamworks;
 using System;
 using System.Collections.Generic;
@@ -26,11 +28,15 @@ namespace WindowsFormsApplication1
         protected CallResult<CreateItemResult_t> _itemCreated;
         protected CallResult<SubmitItemUpdateResult_t> _itemSubmitted;
         private string basepath = "Mod/";
+        public string _appFolder;
+        public Dictionary<string, ST_WL_FILE_INFO> _dict;
         public ModTool()
         {
            
 
             InitializeComponent();
+
+            _dict = new Dictionary<string, ST_WL_FILE_INFO>();
 
             string langName = System.Globalization.CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
 
@@ -52,6 +58,17 @@ namespace WindowsFormsApplication1
             if (!SteamAPI.Init())
             {
                _status.Text  = "Steam Init Error, Please Open Steam First.";
+            }
+
+            if (!SteamApps.BIsAppInstalled(new AppId_t(APP_ID)))
+            {
+                _status.Text = "Not found installed app in steam.";
+            }
+            else
+            {
+                SteamApps.GetAppInstallDir(new AppId_t(APP_ID),out _appFolder, 1024);
+                _status.Text = _appFolder;
+                loadIndexInfo();
             }
 
             basepath = System.Windows.Forms.Application.StartupPath + "/Mod/";
@@ -303,6 +320,7 @@ namespace WindowsFormsApplication1
         {
             _status.Text = "Validating mod pack...";
 
+            /*
             if (pack.HasTag("Language"))
             {
                 string langfile = basepath + _pack.contentfolder + "/lang/language.xlsx";
@@ -311,6 +329,7 @@ namespace WindowsFormsApplication1
                     return false;
                 }
             }
+            */
 
             string path = basepath + pack.previewfile;
 
@@ -422,6 +441,138 @@ namespace WindowsFormsApplication1
             _commit.Text = rm.GetString("submit");
         }
 
-       
+        public JObject loadJsonFromPack(string filename)
+        {
+            ST_WL_FILE_INFO info;
+            if (!_dict.TryGetValue(filename, out info))
+            {
+                _status.Text = "not found lang file";
+                return null;
+            }
+
+            byte[] data = unpackBuff(_appFolder + "/" + info.file, info.start, info.size);
+            string v = Encoding.Default.GetString(data);
+            return (JObject)JsonConvert.DeserializeObject(v);
+        }
+
+        public JObject loadJson(string filename)
+        {
+            string json;
+            using (FileStream fileStream = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
+                using (TextReader textReader = new StreamReader(fileStream, Encoding.GetEncoding("utf-8")))
+                {
+                    json = textReader.ReadToEnd();
+                }
+            }
+            
+            return (JObject)JsonConvert.DeserializeObject(json);
+        }
+
+        public void SaveModLang(string json)
+        {
+            //写入文件
+            using (FileStream fileStream = new FileStream(basepath + _pack.contentfolder + "/lang/language.json", FileMode.Create, FileAccess.Write))
+            {
+                using (TextWriter textWriter = new StreamWriter(fileStream, new System.Text.UTF8Encoding(false)))
+                {
+                    textWriter.Write(json);
+                }
+            }
+        }
+
+        private void initModLang(JObject obj)
+        {
+            string langFolder = basepath + _pack.contentfolder + "/lang";
+            if (!Directory.Exists(langFolder))
+            {
+                Directory.CreateDirectory(langFolder);
+
+            }
+            if (obj == null)
+            {
+                File.Copy("template/lang/language.json", langFolder + "/language.json", false);
+                return;
+            }
+            Dictionary<string, string> table = new Dictionary<string, string>();
+            foreach(var item in obj)
+            {
+                if (table.ContainsKey(item.Key))
+                {
+                    continue;
+                }
+                table.Add(item.Key,"");
+            }
+            //生成Json字符串
+            string json = JsonConvert.SerializeObject(table, Newtonsoft.Json.Formatting.Indented);
+            SaveModLang(json);
+        }
+
+        private void btnModLanguage_Click(object sender, EventArgs e)
+        {
+            //read new language file
+            JObject src = loadJsonFromPack("res/lang/text_zh.json");
+            if (src == null)
+            {
+                src = loadJson(basepath + _pack.contentfolder + "/lang/text_zh.json");
+            }
+            //read my language file
+            string modlangFile = basepath + _pack.contentfolder + "/lang/language.json";
+            if (!File.Exists(modlangFile))
+            {
+                initModLang(src);
+            }
+            JObject my = loadJson(modlangFile);
+            //create newinfo
+            FormLanguage form = new FormLanguage();
+            form.init(src, my);
+            form.ShowDialog();
+            
+        }
+
+        private byte[] unpackBuff(string filename)
+        {
+            FileStream fs = File.OpenRead(filename);
+            byte[] data = new byte[fs.Length];
+            fs.Read(data, 0, data.Length);
+            for(int i = 0; i < data.Length; ++i)
+            {
+                data[i] = (byte)(data[i] << 5 | data[i] >> 3);
+            }
+            return data;
+        }
+
+        private byte[] unpackBuff(string filename,int start,int size)
+        {
+            FileStream fs = File.OpenRead(filename);
+            long a = fs.Length;
+            byte[] data = new byte[size];
+            fs.Seek(start, SeekOrigin.Begin);
+            fs.Read(data, 0, data.Length);
+            for (int i = 0; i < data.Length; ++i)
+            {
+                data[i] = (byte)(data[i] << 5 | data[i] >> 3);
+            }
+            return data;
+        }
+
+
+        private void loadIndexInfo()
+        {
+            byte[] data = unpackBuff(_appFolder + "/data/lg0.wld");
+            using (StreamReader reader = new StreamReader(new MemoryStream(data)))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var path = reader.ReadLine();
+                    ST_WL_FILE_INFO info;
+                    info.file = reader.ReadLine();
+                    info.start = int.Parse(reader.ReadLine());
+                    info.size = int.Parse(reader.ReadLine());
+                    _dict.Add(path, info);
+                }
+                
+            }
+        }
     }
 }

@@ -9,6 +9,14 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1
 {
+    public struct ST_WL_FILE_INFO
+    {
+        public string file;
+        public int size;
+        public int start;
+    };
+
+    
     public class WorkshopModPack
     {
         public string filename = "Mod/language.workshop.json";

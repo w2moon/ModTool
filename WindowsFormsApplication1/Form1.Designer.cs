@@ -42,6 +42,7 @@
             this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnModLanguage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._preview)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -121,10 +122,18 @@
             resources.ApplyResources(this.enToolStripMenuItem, "enToolStripMenuItem");
             this.enToolStripMenuItem.Click += new System.EventHandler(this.enToolStripMenuItem_Click);
             // 
+            // btnModLanguage
+            // 
+            resources.ApplyResources(this.btnModLanguage, "btnModLanguage");
+            this.btnModLanguage.Name = "btnModLanguage";
+            this.btnModLanguage.UseVisualStyleBackColor = true;
+            this.btnModLanguage.Click += new System.EventHandler(this.btnModLanguage_Click);
+            // 
             // ModTool
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnModLanguage);
             this.Controls.Add(this._preview);
             this.Controls.Add(this._lblDescription);
             this.Controls.Add(this._description);
@@ -161,6 +170,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zhToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enToolStripMenuItem;
+        private System.Windows.Forms.Button btnModLanguage;
     }
 }
 
