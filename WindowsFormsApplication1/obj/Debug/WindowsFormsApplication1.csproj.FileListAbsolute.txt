@@ -41,3 +41,4 @@ E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\zh\ModTool.resources.dll
 E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\ModTool.exe
 E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\ModTool.pdb
 E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\ModTool.FormLanguage.resources
+E:\projects\work\ModTool\WindowsFormsApplication1\obj\Debug\ModTool.FormLanguage.resources

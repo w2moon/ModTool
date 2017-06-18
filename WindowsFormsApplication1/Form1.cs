@@ -525,7 +525,7 @@ namespace WindowsFormsApplication1
             JObject my = loadJson(modlangFile);
             //create newinfo
             FormLanguage form = new FormLanguage();
-            form.init(src, my);
+            form.init(src, my,this);
             form.ShowDialog();
             
         }
