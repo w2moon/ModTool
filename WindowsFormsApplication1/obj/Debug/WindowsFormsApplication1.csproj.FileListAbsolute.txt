@@ -46,3 +46,7 @@ E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\ModTool.exe.manifest
 E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\ModTool.application
 E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\ModTool.exe.manifest
 E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\ModTool.application
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Microsoft.Xna.Framework.dll
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Microsoft.Xna.Framework.Graphics.dll
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Microsoft.Xna.Framework.xml
+E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Microsoft.Xna.Framework.Graphics.xml
