@@ -45,6 +45,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.boxTextFilter = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.checkBoxSystemFont = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // listBoxID
@@ -205,11 +206,24 @@
             this.label6.TabIndex = 17;
             this.label6.Text = "ID:";
             // 
+            // checkBoxSystemFont
+            // 
+            this.checkBoxSystemFont.AutoSize = true;
+            this.checkBoxSystemFont.Checked = true;
+            this.checkBoxSystemFont.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxSystemFont.Location = new System.Drawing.Point(14, 4);
+            this.checkBoxSystemFont.Name = "checkBoxSystemFont";
+            this.checkBoxSystemFont.Size = new System.Drawing.Size(114, 16);
+            this.checkBoxSystemFont.TabIndex = 18;
+            this.checkBoxSystemFont.Text = "Use System Font";
+            this.checkBoxSystemFont.UseVisualStyleBackColor = true;
+            // 
             // FormLanguage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.checkBoxSystemFont);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.boxTextFilter);
             this.Controls.Add(this.label5);
@@ -254,5 +268,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox boxTextFilter;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox checkBoxSystemFont;
     }
 }

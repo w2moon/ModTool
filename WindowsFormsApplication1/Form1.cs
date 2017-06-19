@@ -30,6 +30,9 @@ namespace WindowsFormsApplication1
         private string basepath = "Mod/";
         public string _appFolder;
         public Dictionary<string, ST_WL_FILE_INFO> _dict;
+        public JObject lang;
+        public string langName;
+        public JObject config;
         public ModTool()
         {
            
@@ -38,7 +41,7 @@ namespace WindowsFormsApplication1
 
             _dict = new Dictionary<string, ST_WL_FILE_INFO>();
 
-            string langName = System.Globalization.CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
+            langName = System.Globalization.CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
 
             if(langName == "zh")
             {
@@ -49,7 +52,8 @@ namespace WindowsFormsApplication1
                 langName = "en";
             }
 
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(langName);
+            lang = loadJson("template/lang.json");
+            
             UpdateUILanguage();
 
             StreamReader objReader = new StreamReader("steam_appid.txt");
@@ -85,7 +89,8 @@ namespace WindowsFormsApplication1
             if (File.Exists(filename))
             {//读取
                 _pack = WorkshopModPack.Load(filename);
-                
+
+                loadConfig();
             }
             else
             {//创建
@@ -97,6 +102,40 @@ namespace WindowsFormsApplication1
             _preview.Image =  Image.FromFile(basepath + _pack.previewfile);// basepath + _pack.previewfile;
 
 
+        }
+
+        private void loadConfig()
+        {
+            var configPath = basepath + _pack.contentfolder + "/config.json";
+            if (File.Exists(configPath))
+            {
+                config = loadJson(configPath);
+            }
+            else
+            {
+                config = new JObject();
+                config["UseSystemFont"] = true;
+                writeJsonFile(config,configPath);
+            }
+            
+        }
+        public void saveConfigFile()
+        {
+            var configPath = basepath + _pack.contentfolder + "/config.json";
+            writeJsonFile(config, configPath);
+        }
+        public void writeJsonFile(JObject obj,string filepath)
+        {
+            //生成Json字符串
+            string json = JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
+            //写入文件
+            using (FileStream fileStream = new FileStream(filepath, FileMode.Create, FileAccess.Write))
+            {
+                using (TextWriter textWriter = new StreamWriter(fileStream, new System.Text.UTF8Encoding(false)))
+                {
+                    textWriter.Write(json);
+                }
+            }
         }
 
         private void StartUpdate()
@@ -162,8 +201,13 @@ namespace WindowsFormsApplication1
     pchURL should be set to steam://url/CommunityFilePage/PublishedFileId_t replacing PublishedFileId_t with the workshop item Id.
     This has the benefit of directing the author to the workshop page so that they can see the item and configure it further if necessary and will make it easy for the user to read and accept the Steam Workshop Legal Agreement.
                  * */
-            }
 
+                //string pchURL = "http://url/CommunityFilePage/" + callback.m_nPublishedFileId.ToString();
+               // SteamFriends.ActivateGameOverlayToWebPage(pchURL);
+               string pchURL = "http://steamcommunity.com/workshop/workshoplegalagreement/?appid="+APP_ID+"&originpublishedfileid=" + callback.m_nPublishedFileId.ToString();
+                System.Diagnostics.Process.Start(pchURL);
+            }
+            
             if (callback.m_eResult == EResult.k_EResultOK)
             {
                 _status.Text = "Item creation successful! Published Item ID: " + callback.m_nPublishedFileId.ToString();
@@ -171,7 +215,7 @@ namespace WindowsFormsApplication1
                 _pack.publishedfileid = callback.m_nPublishedFileId.ToString();
                 _pack.Save();
 
-
+                loadConfig();
             }
    
         }
@@ -421,24 +465,28 @@ namespace WindowsFormsApplication1
 
         private void enToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+            langName = "en";
             UpdateUILanguage();
         }
 
         private void zhToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh");
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh");
+            langName = "zh";
             UpdateUILanguage();
         }
 
         private void UpdateUILanguage()
         {
-            ResourceManager rm = new ResourceManager(typeof(ModTool));
 
-            _lblTitle.Text = rm.GetString("title");
-            _lblDescription.Text = rm.GetString("description");
-            _lblChangeNote.Text = rm.GetString("changenote");
-            _commit.Text = rm.GetString("submit");
+            _lblTitle.Text = lang["title"][langName].ToString();
+            _lblDescription.Text = lang["description"][langName].ToString();
+            _lblChangeNote.Text = lang["changenote"][langName].ToString();
+            _commit.Text = lang["submit"][langName].ToString();
+            ToolStripMenuItem.Text = lang["settings"][langName].ToString();
+            lblLink.Text = lang["shopPage"][langName].ToString();
+            btnModLanguage.Text = lang["modLanguage"][langName].ToString();
         }
 
         public JObject loadJsonFromPack(string filename)
@@ -573,6 +621,12 @@ namespace WindowsFormsApplication1
                 }
                 
             }
+        }
+
+        private void lblLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string url = "http://steamcommunity.com/workshop/filedetails/?id=" + _pack.publishedfileid.ToString();
+            System.Diagnostics.Process.Start(url);
         }
     }
 }

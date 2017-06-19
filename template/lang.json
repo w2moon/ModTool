@@ -1,0 +1,70 @@
+{
+	"changenote":{
+		"zh":"更新说明",
+		"en":"Change Note"
+	},
+	"description":{
+		"zh":"描述",
+		"en":"Description"
+	},
+	"submit":{
+		"zh":"上传",
+		"en":"Submit"
+	},
+	"title":{
+		"zh":"名称",
+		"en":"Title"
+	},
+	"settings":{
+		"zh":"设置",
+		"en":"settings"
+	},
+	"shopPage":{
+		"zh":"模组页面",
+		"en":"Item Page"
+	},
+	"modLanguage":{
+		"zh":"语言模组",
+		"en":"Mod Language"
+	},
+	"idFilter":{
+		"zh":"ID过滤",
+		"en":"ID Filter"
+	},
+	"textFilter":{
+		"zh":"内容过滤",
+		"en":"Text Filter"
+	},
+	"unfinished":{
+		"zh":"只显示未翻译",
+		"en":"Unfinished"
+	},
+	"total":{
+		"zh":"全部:",
+		"en":"total:"
+	},
+	"remain":{
+		"zh":"剩余:",
+		"en":"remain:"
+	},
+	"officialEn":{
+		"zh":"官方英文:",
+		"en":"Official English:"
+	},
+	"officialZh":{
+		"zh":"官方中文:",
+		"en":"Official Chinese:"
+	},
+	"newText":{
+		"zh":"翻译:",
+		"en":"New Text:"
+	},
+	"prev":{
+		"zh":"上一个(&P)",
+		"en":"Prev(&P)"
+	},
+	"next":{
+		"zh":"下一个(&N)",
+		"en":"Next(&N)"
+	}
+}

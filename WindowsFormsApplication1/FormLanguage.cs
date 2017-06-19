@@ -27,6 +27,20 @@ namespace ModTool
 
 
         }
+        private void UpdateUILanguage()
+        {
+            var lang = _modTool.lang;
+            var langName = _modTool.langName;
+            this.Text = lang["modLanguage"][langName].ToString();
+            label4.Text = lang["idFilter"][langName].ToString();
+            label5.Text = lang["textFilter"][langName].ToString();
+            checkBoxOnlyEmpty.Text = lang["unfinished"][langName].ToString();
+            label1.Text = lang["officialEn"][langName].ToString();
+            label2.Text = lang["officialZh"][langName].ToString();
+            label3.Text = lang["newText"][langName].ToString();
+            btnPrev.Text = lang["prev"][langName].ToString();
+            btnNext.Text = lang["next"][langName].ToString();
+        }
 
         private void listBoxID_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -49,7 +63,20 @@ namespace ModTool
             string json = JsonConvert.SerializeObject(_my, Newtonsoft.Json.Formatting.Indented);
             _modTool.SaveModLang(json);
         }
+        private void systemFontChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSystemFont.Checked)
+            {
+                _modTool.config["UseSystemFont"] = true;
+            }
+            else
+            {
+                _modTool.config["UseSystemFont"] = false;
+            }
+            _modTool.saveConfigFile();
 
+
+        }
         private void boxMyChanged(object sender, EventArgs e)
         {
             if(listBoxID.SelectedItem == null)
@@ -166,16 +193,25 @@ namespace ModTool
         }
         private void updateNum()
         {
-            lblNum.Text = "total:" + _tot.ToString()+" remain:"+(_tot - _valid).ToString();
+            var lang = _modTool.lang;
+            var langName = _modTool.langName;
+            lblNum.Text = lang["total"][langName].ToString() + _tot.ToString()+" "+ lang["remain"][langName].ToString() + (_tot - _valid).ToString();
         }
 
-        public void init(JObject src,JObject my,WindowsFormsApplication1.ModTool modTool)
+        public void init(JObject src, JObject my, WindowsFormsApplication1.ModTool modTool)
         {
             _src = src;
             _my = my;
             _modTool = modTool;
+            if (_modTool.config["UseSystemFont"] != null && _modTool.config["UseSystemFont"].ToObject<bool>() == true)
+            {
+                    checkBoxSystemFont.Checked = true;
+            }
+            else{
+                checkBoxSystemFont.Checked = false;
+            }
 
-            
+            checkBoxSystemFont.CheckedChanged += new System.EventHandler(this.systemFontChanged);
 
             listBoxID.DrawMode = DrawMode.OwnerDrawFixed;
             listBoxID.DrawItem += new DrawItemEventHandler(this.listBoxID_DrawItem);
@@ -185,6 +221,7 @@ namespace ModTool
             listItems("","");
             boxIDFilter.TextChanged +=  new System.EventHandler(this.boxFilterChanged);
             boxTextFilter.TextChanged += new System.EventHandler(this.boxTextFilterChanged);
+            UpdateUILanguage();
         }
         private void listBoxID_DrawItem(object sender, DrawItemEventArgs e)
         {
