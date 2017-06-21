@@ -50,3 +50,5 @@ E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Microsoft.Xna.Framework.d
 E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Microsoft.Xna.Framework.Graphics.dll
 E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Microsoft.Xna.Framework.xml
 E:\projects\ModTool\WindowsFormsApplication1\bin\Debug\Microsoft.Xna.Framework.Graphics.xml
+E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\ModTool.ModSelector.resources
+E:\projects\ModTool\WindowsFormsApplication1\obj\Debug\ModTool.CreateMod.resources

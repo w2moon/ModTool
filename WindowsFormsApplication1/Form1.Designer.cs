@@ -44,7 +44,7 @@
             this.enToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnModLanguage = new System.Windows.Forms.Button();
             this.lblLink = new System.Windows.Forms.LinkLabel();
-            this.spinningTriangleControl1 = new WindowsFormsApplication1.SpinningTriangleControl();
+            this.checkBoxPublic = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this._preview)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -138,16 +138,18 @@
             this.lblLink.TabStop = true;
             this.lblLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLink_LinkClicked);
             // 
-            // spinningTriangleControl1
+            // checkBoxPublic
             // 
-            resources.ApplyResources(this.spinningTriangleControl1, "spinningTriangleControl1");
-            this.spinningTriangleControl1.Name = "spinningTriangleControl1";
+            resources.ApplyResources(this.checkBoxPublic, "checkBoxPublic");
+            this.checkBoxPublic.Name = "checkBoxPublic";
+            this.checkBoxPublic.UseVisualStyleBackColor = true;
+            
             // 
             // ModTool
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.spinningTriangleControl1);
+            this.Controls.Add(this.checkBoxPublic);
             this.Controls.Add(this.lblLink);
             this.Controls.Add(this.btnModLanguage);
             this.Controls.Add(this._preview);
@@ -188,7 +190,7 @@
         private System.Windows.Forms.ToolStripMenuItem enToolStripMenuItem;
         private System.Windows.Forms.Button btnModLanguage;
         private System.Windows.Forms.LinkLabel lblLink;
-        private SpinningTriangleControl spinningTriangleControl1;
+        private System.Windows.Forms.CheckBox checkBoxPublic;
     }
 }
 

@@ -92,6 +92,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateMod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateMod.Designer.cs">
+      <DependentUpon>CreateMod.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLanguage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GraphicsDeviceService.cs" />
+    <Compile Include="ModSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModSelector.Designer.cs">
+      <DependentUpon>ModSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServiceContainer.cs" />
     <Compile Include="SpinningTriangleControl.cs">
       <SubType>Component</SubType>
@@ -115,6 +127,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CreateMod.resx">
+      <DependentUpon>CreateMod.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.en.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLanguage.resx">
       <DependentUpon>FormLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModSelector.resx">
+      <DependentUpon>ModSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

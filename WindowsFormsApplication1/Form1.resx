@@ -441,28 +441,31 @@
   <data name="&gt;&gt;lblLink.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="spinningTriangleControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>314, 12</value>
+  <data name="checkBoxPublic.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="spinningTriangleControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 57</value>
+  <data name="checkBoxPublic.Location" type="System.Drawing.Point, System.Drawing">
+    <value>287, 93</value>
   </data>
-  <data name="spinningTriangleControl1.TabIndex" type="System.Int32, mscorlib">
+  <data name="checkBoxPublic.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 16</value>
+  </data>
+  <data name="checkBoxPublic.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="spinningTriangleControl1.Text" xml:space="preserve">
-    <value>spinningTriangleControl1</value>
+  <data name="checkBoxPublic.Text" xml:space="preserve">
+    <value>public</value>
   </data>
-  <data name="&gt;&gt;spinningTriangleControl1.Name" xml:space="preserve">
-    <value>spinningTriangleControl1</value>
+  <data name="&gt;&gt;checkBoxPublic.Name" xml:space="preserve">
+    <value>checkBoxPublic</value>
   </data>
-  <data name="&gt;&gt;spinningTriangleControl1.Type" xml:space="preserve">
-    <value>WindowsFormsApplication1.SpinningTriangleControl, ModTool, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;checkBoxPublic.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;spinningTriangleControl1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;checkBoxPublic.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;spinningTriangleControl1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;checkBoxPublic.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

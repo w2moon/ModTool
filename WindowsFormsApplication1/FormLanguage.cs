@@ -146,6 +146,10 @@ namespace ModTool
                 {
                     continue;
                 }
+                if(_src[key] == null)
+                {
+                    continue;
+                }
                 if (_src[key]["en"].ToString().EndsWith(".png"))
                 {
                     continue;

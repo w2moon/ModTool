@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1
         public Dictionary<string, ST_WL_FILE_INFO> _dict;
         public JObject lang;
         public string langName;
+        public string modName;
         public JObject config;
         public ModTool()
         {
@@ -59,10 +60,7 @@ namespace WindowsFormsApplication1
             StreamReader objReader = new StreamReader("steam_appid.txt");
             APP_ID = uint.Parse(objReader.ReadLine());
             
-            if (!SteamAPI.Init())
-            {
-               _status.Text  = "Steam Init Error, Please Open Steam First.";
-            }
+           
 
             if (!SteamApps.BIsAppInstalled(new AppId_t(APP_ID)))
             {
@@ -75,16 +73,29 @@ namespace WindowsFormsApplication1
                 loadIndexInfo();
             }
 
-            basepath = System.Windows.Forms.Application.StartupPath + "/Mod/";
+            //basepath = System.Windows.Forms.Application.StartupPath + "/Mod/";
+
+
+
+           
+        }
+        private void infoChanged(object sender, EventArgs e)
+        {
+            SaveCurrentModPack();
+        }
+        public void setBasePath(string path,string mname)
+        {
+            basepath = path;
+            modName = mname;
 
             InitFolders();
-            
+
             _itemCreated = CallResult<CreateItemResult_t>.Create(OnItemCreated);
             _itemSubmitted = CallResult<SubmitItemUpdateResult_t>.Create(OnItemSubmitted);
 
-            StartUpdate();
+            // StartUpdate();
 
-            string filename = basepath+"language.workshop.json";
+            string filename = basepath + modName + ".workshop.json";
 
             if (File.Exists(filename))
             {//读取
@@ -99,11 +110,22 @@ namespace WindowsFormsApplication1
             }
             _title.Text = _pack.title;
             _description.Text = _pack.description;
-            _preview.Image =  Image.FromFile(basepath + _pack.previewfile);// basepath + _pack.previewfile;
+            if(_pack.visibility == (int)(ERemoteStoragePublishedFileVisibility.k_ERemoteStoragePublishedFileVisibilityPublic))
+            {
+                checkBoxPublic.Checked = true;
+            }
+            else
+            {
+                checkBoxPublic.Checked = false;
+            }
+            
+            _preview.Image = Image.FromFile(basepath + _pack.previewfile);// basepath + _pack.previewfile;
 
-
+            _title.TextChanged += new System.EventHandler(this.infoChanged);
+            _description.TextChanged += new System.EventHandler(this.infoChanged);
+            _changeNote.TextChanged += new System.EventHandler(this.infoChanged);
+            checkBoxPublic.CheckedChanged += new System.EventHandler(this.infoChanged);
         }
-
         private void loadConfig()
         {
             var configPath = basepath + _pack.contentfolder + "/config.json";
@@ -357,6 +379,15 @@ namespace WindowsFormsApplication1
         {
             _pack.title = _title.Text;
             _pack.description = _description.Text;
+            if (checkBoxPublic.Checked)
+            {
+                _pack.visibility = (int)(ERemoteStoragePublishedFileVisibility.k_ERemoteStoragePublishedFileVisibilityPublic);
+            }
+            else
+            {
+                _pack.visibility = (int)(ERemoteStoragePublishedFileVisibility.k_ERemoteStoragePublishedFileVisibilityPrivate);
+            }
+            
             _pack.Save();
         }
 
@@ -628,5 +659,7 @@ namespace WindowsFormsApplication1
             string url = "http://steamcommunity.com/workshop/filedetails/?id=" + _pack.publishedfileid.ToString();
             System.Diagnostics.Process.Start(url);
         }
+
+       
     }
 }
