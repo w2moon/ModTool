@@ -16,11 +16,29 @@ namespace WindowsFormsApplication1
         public int start;
     };
 
-    
-    public class WorkshopModPack
+    public class LocalWorkshopItem
+    {
+        public string title;
+        public string description;
+        public string path;
+        public string tags;
+        public string publishId;
+    }
+
+    public class ViewItem
+    {
+        public string name;
+        public string description;
+        public string path;
+        public int type = 0;
+    }
+
+
+        public class WorkshopModPack
     {
         public string filename = "Mod/language.workshop.json";
         // string, because this is a ulong and JSON doesn't like em
+        public string localFolder = "";
         public string publishedfileid = "";
         public string contentfolder = "Content";
         public string previewfile = "preview.png";
@@ -54,6 +72,16 @@ namespace WindowsFormsApplication1
         public bool HasTag(string tag)
         {
             return tags.Contains(tag);
+        }
+
+        public string getTagString()
+        {
+            string ret = "";
+            foreach(var tag in tags)
+            {
+                ret += tag;
+            }
+            return ret;
         }
 
         public void Save()

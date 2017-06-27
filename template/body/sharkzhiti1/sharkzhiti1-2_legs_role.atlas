@@ -1,0 +1,83 @@
+
+sharkzhiti1-2_legs_role.png
+size: 1111,338
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sharkzhiti3-14
+  rotate: false
+  xy: 2, 170
+  size: 347, 166
+  orig: 347, 166
+  offset: 0, 0
+  index: -1
+sharkzhiti3-15
+  rotate: false
+  xy: 2, 2
+  size: 347, 166
+  orig: 347, 166
+  offset: 0, 0
+  index: -1
+sharkzhiti3-16
+  rotate: false
+  xy: 351, 170
+  size: 347, 166
+  orig: 347, 166
+  offset: 0, 0
+  index: -1
+sharkzhiti3-17
+  rotate: false
+  xy: 351, 2
+  size: 347, 166
+  orig: 347, 166
+  offset: 0, 0
+  index: -1
+sharkzhiti3-18
+  rotate: false
+  xy: 700, 170
+  size: 347, 166
+  orig: 347, 166
+  offset: 0, 0
+  index: -1
+sharkzhiti3-19
+  rotate: false
+  xy: 700, 2
+  size: 347, 166
+  orig: 347, 166
+  offset: 0, 0
+  index: -1
+sharkzhiti3-3
+  rotate: true
+  xy: 1049, 213
+  size: 123, 60
+  orig: 123, 60
+  offset: 0, 0
+  index: -1
+sharkzhiti3-4
+  rotate: true
+  xy: 1049, 88
+  size: 123, 60
+  orig: 123, 60
+  offset: 0, 0
+  index: -1
+sharkzhiti3-5
+  rotate: false
+  xy: 1049, 70
+  size: 17, 16
+  orig: 17, 16
+  offset: 0, 0
+  index: -1
+sharkzhiti3-6
+  rotate: false
+  xy: 1049, 51
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+sharkzhiti3-7
+  rotate: false
+  xy: 1068, 70
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

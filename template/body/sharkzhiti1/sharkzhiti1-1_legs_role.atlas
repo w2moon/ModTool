@@ -1,0 +1,55 @@
+
+sharkzhiti1-1_legs_role.png
+size: 424,546
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sharkzhiti3-1
+  rotate: true
+  xy: 258, 20
+  size: 37, 56
+  orig: 37, 56
+  offset: 0, 0
+  index: -1
+sharkzhiti3-10
+  rotate: false
+  xy: 2, 348
+  size: 257, 196
+  orig: 257, 196
+  offset: 0, 0
+  index: -1
+sharkzhiti3-11
+  rotate: true
+  xy: 258, 59
+  size: 244, 155
+  orig: 244, 155
+  offset: 0, 0
+  index: -1
+sharkzhiti3-12
+  rotate: false
+  xy: 2, 166
+  size: 238, 180
+  orig: 238, 180
+  offset: 0, 0
+  index: -1
+sharkzhiti3-2
+  rotate: true
+  xy: 316, 20
+  size: 37, 56
+  orig: 37, 56
+  offset: 0, 0
+  index: -1
+sharkzhiti3-8
+  rotate: true
+  xy: 261, 305
+  size: 239, 161
+  orig: 239, 161
+  offset: 0, 0
+  index: -1
+sharkzhiti3-9
+  rotate: false
+  xy: 2, 2
+  size: 254, 162
+  orig: 254, 162
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,20 @@
+
+sharkzhiti1-4_neck_role.png
+size: 203,115
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sharkzhiti2-6
+  rotate: false
+  xy: 2, 2
+  size: 114, 111
+  orig: 114, 111
+  offset: 0, 0
+  index: -1
+sharkzhiti2-7
+  rotate: false
+  xy: 118, 15
+  size: 83, 98
+  orig: 83, 98
+  offset: 0, 0
+  index: -1

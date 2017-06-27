@@ -70,6 +70,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -92,32 +93,84 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation.cs" />
+    <Compile Include="AnimationState.cs" />
+    <Compile Include="AnimationStateData.cs" />
+    <Compile Include="Atlas.cs" />
+    <Compile Include="AtlasAttachmentLoader.cs" />
+    <Compile Include="Attachment.cs" />
+    <Compile Include="AttachmentLoader.cs" />
+    <Compile Include="AttachmentType.cs" />
+    <Compile Include="BlendMode.cs" />
+    <Compile Include="Bone.cs" />
+    <Compile Include="BoneData.cs" />
+    <Compile Include="BoundingBoxAttachment.cs" />
     <Compile Include="CreateMod.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CreateMod.Designer.cs">
       <DependentUpon>CreateMod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Event.cs" />
+    <Compile Include="EventData.cs" />
+    <Compile Include="ExposedList.cs" />
+    <Compile Include="FolderBrowserLauncher.cs" />
     <Compile Include="FormLanguage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormLanguage.Designer.cs">
       <DependentUpon>FormLanguage.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameObject.cs" />
     <Compile Include="GraphicsDeviceControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GraphicsDeviceService.cs" />
+    <Compile Include="IConstraint.cs" />
+    <Compile Include="IkConstraint.cs" />
+    <Compile Include="IkConstraintData.cs" />
+    <Compile Include="IUpdatable.cs" />
+    <Compile Include="Json.cs" />
+    <Compile Include="MathUtils.cs" />
+    <Compile Include="MeshAttachment.cs" />
+    <Compile Include="MeshBatcher.cs" />
     <Compile Include="ModSelector.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ModSelector.Designer.cs">
       <DependentUpon>ModSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModView.Designer.cs">
+      <DependentUpon>ModView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PathAttachment.cs" />
+    <Compile Include="PathConstraint.cs" />
+    <Compile Include="PathConstraintData.cs" />
+    <Compile Include="RegionAttachment.cs" />
+    <Compile Include="RegionBatcher.cs" />
     <Compile Include="ServiceContainer.cs" />
+    <Compile Include="Skeleton.cs" />
+    <Compile Include="SkeletonBinary.cs" />
+    <Compile Include="SkeletonBounds.cs" />
+    <Compile Include="SkeletonData.cs" />
+    <Compile Include="SkeletonJson.cs" />
+    <Compile Include="SkeletonMeshRenderer.cs" />
+    <Compile Include="SkeletonRegionRenderer.cs" />
+    <Compile Include="Skin.cs" />
+    <Compile Include="Slot.cs" />
+    <Compile Include="SlotData.cs" />
+    <Compile Include="SpineBase.cs" />
     <Compile Include="SpinningTriangleControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Sprite.cs" />
+    <Compile Include="TransformConstraint.cs" />
+    <Compile Include="TransformConstraintData.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="VertexAttachment.cs" />
     <Compile Include="WorkshopModPack.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -127,6 +180,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XnaTextureLoader.cs" />
     <EmbeddedResource Include="CreateMod.resx">
       <DependentUpon>CreateMod.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModSelector.resx">
       <DependentUpon>ModSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModView.resx">
+      <DependentUpon>ModView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -45,6 +45,9 @@
             this.btnModLanguage = new System.Windows.Forms.Button();
             this.lblLink = new System.Windows.Forms.LinkLabel();
             this.checkBoxPublic = new System.Windows.Forms.CheckBox();
+            this.btnSaveLocal = new System.Windows.Forms.Button();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnModView = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._preview)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -143,12 +146,31 @@
             resources.ApplyResources(this.checkBoxPublic, "checkBoxPublic");
             this.checkBoxPublic.Name = "checkBoxPublic";
             this.checkBoxPublic.UseVisualStyleBackColor = true;
-            
+            // 
+            // btnSaveLocal
+            // 
+            resources.ApplyResources(this.btnSaveLocal, "btnSaveLocal");
+            this.btnSaveLocal.Name = "btnSaveLocal";
+            this.btnSaveLocal.UseVisualStyleBackColor = true;
+            this.btnSaveLocal.Click += new System.EventHandler(this.btnSaveLocal_Click);
+            // 
+            // folderBrowserDialog
+            // 
+            resources.ApplyResources(this.folderBrowserDialog, "folderBrowserDialog");
+            // 
+            // btnModView
+            // 
+            resources.ApplyResources(this.btnModView, "btnModView");
+            this.btnModView.Name = "btnModView";
+            this.btnModView.UseVisualStyleBackColor = true;
+            this.btnModView.Click += new System.EventHandler(this.btnModView_Click);
             // 
             // ModTool
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnModView);
+            this.Controls.Add(this.btnSaveLocal);
             this.Controls.Add(this.checkBoxPublic);
             this.Controls.Add(this.lblLink);
             this.Controls.Add(this.btnModLanguage);
@@ -191,6 +213,9 @@
         private System.Windows.Forms.Button btnModLanguage;
         private System.Windows.Forms.LinkLabel lblLink;
         private System.Windows.Forms.CheckBox checkBoxPublic;
+        private System.Windows.Forms.Button btnSaveLocal;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.Button btnModView;
     }
 }
 

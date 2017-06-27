@@ -66,5 +66,41 @@
 	"next":{
 		"zh":"下一个(&N)",
 		"en":"Next(&N)"
+	},
+	"modSelector":{
+		"zh":"模组选择",
+		"en":"ModSelector"
+	},
+	"new":{
+		"zh":"新建",
+		"en":"New"
+	},
+	"edit":{
+		"zh":"编辑",
+		"en":"Edit"
+	},
+	"saveLocal":{
+		"zh":"本地测试",
+		"en":"Local Test"
+	},
+	"ok":{
+		"zh":"确定",
+		"en":"OK"
+	},
+	"cancel":{
+		"zh":"取消",
+		"en":"Cancel"
+	},
+	"modFolderName":{
+		"zh":"模组目录名:",
+		"en":"Mod Folder Name:"
+	},
+	"chooseFreshBodyFolder":{
+		"zh":"选择冷鲜肉的目录",
+		"en":"Choose Folder of Fresh Body"
+	},
+	"createMod":{
+		"zh":"新建模组",
+		"en":"Create Mod"
 	}
 }

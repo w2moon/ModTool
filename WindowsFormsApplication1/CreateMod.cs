@@ -50,6 +50,15 @@ namespace ModTool
             textName.Text = name;
 
             _itemCreated = CallResult<CreateItemResult_t>.Create(OnItemCreated);
+
+            UpdateUILanguage();
+        }
+        public void UpdateUILanguage()
+        {
+            label1.Text = ModSelector.getLang("modFolderName");
+            btnOK.Text = ModSelector.getLang("ok");
+            btnCancel.Text = ModSelector.getLang("cancel");
+            this.Text = ModSelector.getLang("createMod");
         }
 
         public void setSelector(ModSelector sel)

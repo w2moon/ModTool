@@ -1,0 +1,69 @@
+
+Insect12-4_legs_role.png
+size: 114,277
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Insect12-1_tui_2_role
+  rotate: true
+  xy: 80, 13
+  size: 37, 24
+  orig: 37, 24
+  offset: 0, 0
+  index: -1
+Insect12-1_tui_3_role
+  rotate: false
+  xy: 42, 2
+  size: 36, 26
+  orig: 36, 26
+  offset: 0, 0
+  index: -1
+Insect12-1_tui_4_role
+  rotate: false
+  xy: 2, 2
+  size: 38, 26
+  orig: 38, 26
+  offset: 0, 0
+  index: -1
+Insect12-1_tui_5_role
+  rotate: false
+  xy: 2, 30
+  size: 71, 37
+  orig: 71, 37
+  offset: 0, 0
+  index: -1
+Insect12-1_tui_6_role
+  rotate: false
+  xy: 2, 69
+  size: 71, 40
+  orig: 71, 40
+  offset: 0, 0
+  index: -1
+Insect12-1_tui_7_role
+  rotate: true
+  xy: 75, 52
+  size: 71, 35
+  orig: 71, 35
+  offset: 0, 0
+  index: -1
+Insect12-4_tui_1_role
+  rotate: false
+  xy: 2, 159
+  size: 110, 116
+  orig: 110, 116
+  offset: 0, 0
+  index: -1
+Insect12-4_tui_2_role
+  rotate: true
+  xy: 2, 111
+  size: 46, 45
+  orig: 46, 45
+  offset: 0, 0
+  index: -1
+Insect12-4_tui_3_role
+  rotate: false
+  xy: 49, 125
+  size: 63, 32
+  orig: 63, 32
+  offset: 0, 0
+  index: -1

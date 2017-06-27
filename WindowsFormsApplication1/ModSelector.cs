@@ -1,4 +1,6 @@
-﻿using Steamworks;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,8 @@ namespace ModTool
     public partial class ModSelector : Form
     {
         public string lastChooseName = "";
+        public static string langName;
+        public static JObject lang;
         public ModSelector()
         {
             InitializeComponent();
@@ -32,7 +36,57 @@ namespace ModTool
             StartUpdate();
             UpdateList();
 
+            langName = System.Globalization.CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
+            string str;
+            using (FileStream fileStream = new FileStream("template/lang.json", FileMode.Open, FileAccess.Read))
+            {
+                using (TextReader textReader = new StreamReader(fileStream, Encoding.GetEncoding("utf-8")))
+                {
+                    str = textReader.ReadToEnd();
+                }
+            }
 
+            lang  = (JObject)JsonConvert.DeserializeObject(str);
+
+            if (langName == "zh")
+            {
+            }
+            else
+            {
+                if (lang[langName] == null)
+                {
+                    langName = "en";
+                }
+
+            }
+            UpdateUILanguage();
+
+        }
+
+        public static string getLang(string name)
+        {
+            return lang[name][langName].ToString();
+        }
+
+        public static T loadJson<T>(string filename)
+        {
+            string json;
+            using (FileStream fileStream = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
+                using (TextReader textReader = new StreamReader(fileStream, Encoding.GetEncoding("utf-8")))
+                {
+                    json = textReader.ReadToEnd();
+                }
+            }
+
+           return JsonConvert.DeserializeObject<T>(json);
+        }
+
+        public void UpdateUILanguage()
+        {
+            this.Text = getLang("modSelector");
+            btnNew.Text = getLang("new");
+            btnEdit.Text = getLang("edit");
         }
         private void UpdateList()
         {

@@ -12,6 +12,8 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using ModTool;
 #endregion
 
 namespace WindowsFormsApplication1
@@ -27,22 +29,32 @@ namespace WindowsFormsApplication1
     {
         BasicEffect effect;
         Stopwatch timer;
+        List<GameObject> objs = new List<GameObject>();
+        public delegate void InitEventHandler(object sender);
+        public event InitEventHandler initHandler;
 
-
-        // Vertex positions and colors used to display a spinning triangle.
-        public readonly VertexPositionColor[] Vertices =
+        public void AddObject(GameObject obj)
         {
-            new VertexPositionColor(new Vector3(-1, -1, 0), Color.Black),
-            new VertexPositionColor(new Vector3( 1, -1, 0), Color.Black),
-            new VertexPositionColor(new Vector3( 0,  1, 0), Color.Black),
-        };
+            objs.Add(obj);
+        }
 
+        public void DeleteObject(GameObject obj)
+        {
+            objs.Remove(obj);
+        }
+
+        public void Clear()
+        {
+            
+            objs.Clear();
+        }
 
         /// <summary>
         /// Initializes the control.
         /// </summary>
         protected override void Initialize()
         {
+            
             // Create our effect.
             effect = new BasicEffect(GraphicsDevice);
 
@@ -53,6 +65,12 @@ namespace WindowsFormsApplication1
 
             // Hook the idle event to constantly redraw our animation.
             Application.Idle += delegate { Invalidate(); };
+
+            if (initHandler != null)
+            {
+                initHandler(this);
+            }
+            
         }
 
 
@@ -66,28 +84,27 @@ namespace WindowsFormsApplication1
             // Spin the triangle according to how much time has passed.
             float time = (float)timer.Elapsed.TotalSeconds;
 
-            float yaw = time * 0.7f;
-            float pitch = time * 0.8f;
-            float roll = time * 0.9f;
-
-            // Set transform matrices.
-            float aspect = GraphicsDevice.Viewport.AspectRatio;
-
+          
+            
+            /*
             effect.World = Matrix.CreateFromYawPitchRoll(yaw, pitch, roll);
 
             effect.View = Matrix.CreateLookAt(new Vector3(0, 0, -5),
                                               Vector3.Zero, Vector3.Up);
 
             effect.Projection = Matrix.CreatePerspectiveFieldOfView(1, aspect, 1, 10);
-
+            */
+            effect.Projection = Matrix.CreateOrthographic(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, 1, -1);
             // Set renderstates.
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
             // Draw the triangle.
             effect.CurrentTechnique.Passes[0].Apply();
-
-            GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList,
-                                              Vertices, 0, 1);
+            for(int i = 0; i < objs.Count; ++i)
+            {
+                objs[i].Draw(time);
+            }
+            
         }
     }
 }

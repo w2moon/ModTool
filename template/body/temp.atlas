@@ -1,0 +1,13 @@
+
+chibang1.png
+size: 140,98
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chibang1
+  rotate: false
+  xy: 2, 2
+  size: 136, 94
+  orig: 136, 94
+  offset: 0, 0
+  index: -1

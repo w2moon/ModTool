@@ -1,0 +1,132 @@
+
+Zombie01-1_waistarm.png
+size: 192,269
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Zombie01-1_shenti_1_role
+  rotate: false
+  xy: 123, 99
+  size: 61, 78
+  orig: 61, 78
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_1111_role
+  rotate: false
+  xy: 77, 74
+  size: 34, 24
+  orig: 34, 24
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_111_role
+  rotate: true
+  xy: 137, 179
+  size: 25, 40
+  orig: 25, 40
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_11_role
+  rotate: true
+  xy: 126, 12
+  size: 29, 24
+  orig: 29, 24
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_1_role
+  rotate: true
+  xy: 103, 43
+  size: 29, 28
+  orig: 29, 28
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_2222_role
+  rotate: false
+  xy: 164, 28
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_222_role
+  rotate: true
+  xy: 152, 73
+  size: 24, 29
+  orig: 24, 29
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_22_role
+  rotate: false
+  xy: 164, 51
+  size: 24, 20
+  orig: 24, 20
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_2_role
+  rotate: false
+  xy: 113, 74
+  size: 18, 23
+  orig: 18, 23
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_33333_role
+  rotate: false
+  xy: 102, 8
+  size: 22, 30
+  orig: 22, 30
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_3333_role
+  rotate: false
+  xy: 133, 47
+  size: 29, 24
+  orig: 29, 24
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_333_role
+  rotate: false
+  xy: 77, 6
+  size: 23, 32
+  orig: 23, 32
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_33_role
+  rotate: true
+  xy: 77, 40
+  size: 32, 24
+  orig: 32, 24
+  offset: 0, 0
+  index: -1
+Zombie01-1_youbi_3_role
+  rotate: false
+  xy: 152, 5
+  size: 19, 21
+  orig: 19, 21
+  offset: 0, 0
+  index: -1
+yizhi1
+  rotate: true
+  xy: 137, 206
+  size: 61, 53
+  orig: 61, 53
+  offset: 0, 0
+  index: -1
+yizhi2
+  rotate: false
+  xy: 2, 2
+  size: 73, 95
+  orig: 73, 95
+  offset: 0, 0
+  index: -1
+yizhi4
+  rotate: true
+  xy: 2, 199
+  size: 68, 133
+  orig: 68, 133
+  offset: 0, 0
+  index: -1
+yizhi5
+  rotate: false
+  xy: 2, 100
+  size: 119, 97
+  orig: 119, 97
+  offset: 0, 0
+  index: -1

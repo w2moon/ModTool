@@ -43,17 +43,21 @@ namespace WindowsFormsApplication1
             _dict = new Dictionary<string, ST_WL_FILE_INFO>();
 
             langName = System.Globalization.CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
-
-            if(langName == "zh")
+            lang = loadJson("template/lang.json");
+            if (langName == "zh")
             {
 
             }
             else
             {
-                langName = "en";
+                if(lang[langName] == null)
+                {
+                    langName = "en";
+                }
+                
             }
 
-            lang = loadJson("template/lang.json");
+            
             
             UpdateUILanguage();
 
@@ -156,6 +160,17 @@ namespace WindowsFormsApplication1
                 using (TextWriter textWriter = new StreamWriter(fileStream, new System.Text.UTF8Encoding(false)))
                 {
                     textWriter.Write(json);
+                }
+            }
+        }
+        public void writeStringFile(string obj, string filepath)
+        {
+            //写入文件
+            using (FileStream fileStream = new FileStream(filepath, FileMode.Create, FileAccess.Write))
+            {
+                using (TextWriter textWriter = new StreamWriter(fileStream, new System.Text.UTF8Encoding(false)))
+                {
+                    textWriter.Write(obj);
                 }
             }
         }
@@ -518,6 +533,8 @@ namespace WindowsFormsApplication1
             ToolStripMenuItem.Text = lang["settings"][langName].ToString();
             lblLink.Text = lang["shopPage"][langName].ToString();
             btnModLanguage.Text = lang["modLanguage"][langName].ToString();
+            btnSaveLocal.Text = lang["saveLocal"][langName].ToString();
+            folderBrowserDialog.Description = lang["chooseFreshBodyFolder"][langName].ToString();
         }
 
         public JObject loadJsonFromPack(string filename)
@@ -660,6 +677,71 @@ namespace WindowsFormsApplication1
             System.Diagnostics.Process.Start(url);
         }
 
-       
+        private void btnSaveLocal_Click(object sender, EventArgs e)
+        {
+            if(_pack.localFolder == "")
+            {
+                folderBrowserDialog.SelectedPath = _appFolder;
+            }
+            else
+            {
+                folderBrowserDialog.SelectedPath = _pack.localFolder;
+            }
+            
+            DialogResult dr = FolderBrowserLauncher.ShowFolderBrowser(folderBrowserDialog);
+            if (dr == DialogResult.OK)
+            {
+                var path = folderBrowserDialog.SelectedPath + "/";
+                _pack.localFolder = folderBrowserDialog.SelectedPath;
+                _pack.Save();
+                var workShopFile = path + "workshop.json";
+                var modPath = path + "/Mod";
+                if (!Directory.Exists(modPath))
+                {
+                    Directory.CreateDirectory(modPath);
+                }
+                List<LocalWorkshopItem> lw;
+                if (!File.Exists(path))
+                {
+                    lw = new List<LocalWorkshopItem>();
+                    writeStringFile(JsonConvert.SerializeObject(lw, Newtonsoft.Json.Formatting.Indented), workShopFile);
+                }
+                string json;
+                using (FileStream fileStream = new FileStream(workShopFile, FileMode.Open, FileAccess.Read))
+                {
+                    using (TextReader textReader = new StreamReader(fileStream, Encoding.GetEncoding("utf-8")))
+                    {
+                        json = textReader.ReadToEnd();
+                    }
+                }
+
+                List<LocalWorkshopItem> items = JsonConvert.DeserializeObject<List<LocalWorkshopItem>>(json);
+                foreach(var item in items)
+                {
+                    if(item.publishId == _pack.publishedfileid)
+                    {
+                        items.Remove(item);
+                        break;
+                    }
+                }
+                LocalWorkshopItem newItem = new LocalWorkshopItem();
+                newItem.publishId = _pack.publishedfileid;
+                newItem.tags = _pack.getTagString();
+                newItem.title = _pack.title;
+                newItem.description = _pack.description;
+                newItem.path = basepath+_pack.contentfolder;
+                items.Add(newItem);
+                writeStringFile(JsonConvert.SerializeObject(items, Newtonsoft.Json.Formatting.Indented), workShopFile);
+
+                _status.Text = "local workshop saved";
+            }
+           
+        }
+
+        private void btnModView_Click(object sender, EventArgs e)
+        {
+            var modView = new ModView();
+            modView.ShowDialog();
+        }
     }
 }

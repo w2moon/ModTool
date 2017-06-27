@@ -1,0 +1,111 @@
+
+Zombie01-4_waistarm.png
+size: 173,268
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Zombie01-4_shenti_1_role
+  rotate: false
+  xy: 99, 3
+  size: 50, 72
+  orig: 50, 72
+  offset: 0, 0
+  index: -1
+Zombie01-4_youbi_111_role
+  rotate: false
+  xy: 101, 173
+  size: 36, 30
+  orig: 36, 30
+  offset: 0, 0
+  index: -1
+Zombie01-4_youbi_11_role
+  rotate: true
+  xy: 139, 176
+  size: 27, 29
+  orig: 27, 29
+  offset: 0, 0
+  index: -1
+Zombie01-4_youbi_1_role
+  rotate: true
+  xy: 101, 148
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+Zombie01-4_youbi_222_role
+  rotate: false
+  xy: 137, 87
+  size: 19, 33
+  orig: 19, 33
+  offset: 0, 0
+  index: -1
+Zombie01-4_youbi_22_role
+  rotate: false
+  xy: 151, 37
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+Zombie01-4_youbi_2_role
+  rotate: false
+  xy: 156, 228
+  size: 14, 20
+  orig: 14, 20
+  offset: 0, 0
+  index: -1
+Zombie01-4_youbi_3333_role
+  rotate: false
+  xy: 137, 122
+  size: 20, 26
+  orig: 20, 26
+  offset: 0, 0
+  index: -1
+Zombie01-4_youbi_333_role
+  rotate: true
+  xy: 134, 150
+  size: 21, 33
+  orig: 21, 33
+  offset: 0, 0
+  index: -1
+Zombie01-4_youbi_33_role
+  rotate: false
+  xy: 151, 59
+  size: 18, 26
+  orig: 18, 26
+  offset: 0, 0
+  index: -1
+Zombie01-4_youbi_3_role
+  rotate: true
+  xy: 156, 250
+  size: 16, 15
+  orig: 16, 15
+  offset: 0, 0
+  index: -1
+yizhi1
+  rotate: true
+  xy: 101, 205
+  size: 61, 53
+  orig: 61, 53
+  offset: 0, 0
+  index: -1
+yizhi2
+  rotate: true
+  xy: 2, 2
+  size: 73, 95
+  orig: 73, 95
+  offset: 0, 0
+  index: -1
+yizhi4
+  rotate: true
+  xy: 2, 77
+  size: 68, 133
+  orig: 68, 133
+  offset: 0, 0
+  index: -1
+yizhi5
+  rotate: true
+  xy: 2, 147
+  size: 119, 97
+  orig: 119, 97
+  offset: 0, 0
+  index: -1
